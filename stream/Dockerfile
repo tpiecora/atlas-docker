@@ -3,12 +3,26 @@ MAINTAINER "Ted Piecora" <tpiecora@gmail.com>
 LABEL version="0.1"
 LABEL description="stream service for atlas"
 
-#RUN yum install -y centos-release-scl && yum clean all
-#RUN yum install -y devtoolset-3-gcc-c++ python27 && yum clean all
+# nginx
+RUN yum install -y epel-release && yum clean all
+RUN yum install -y nginx && yum clean all
+#RUN rm /etc/nginx/conf.d/*.conf
+COPY ./stream/stream-nginx.conf /etc/nginx/conf.d/stream-nginx.conf
+
+# node
 RUN curl -sL https://rpm.nodesource.com/setup_5.x | bash - && yum install -y nodejs && yum clean all
-#RUN scl enable python27 devtoolset-3 "npm install kinesalite"
+
+# kinesis mock service
 RUN npm install kinesalite
-COPY ./start.sh /etc/start.sh
+
+# certificates for mocking aws kinesis
+COPY ./certs/ /certs/
+
+
+COPY ./stream/start.sh /etc/start.sh
 RUN chmod 755 /etc/start.sh
+
+# ports for kinesis and ssl
+EXPOSE 443 80 4567
 
 ENTRYPOINT ["/etc/start.sh"]

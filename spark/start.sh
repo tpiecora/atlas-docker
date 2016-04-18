@@ -16,7 +16,7 @@ cd $HADOOP_PREFIX/share/hadoop/common ; for cp in ${ACP//,/ }; do  echo == $cp; 
 sed s/HOSTNAME/$HOSTNAME/ /usr/local/hadoop/etc/hadoop/core-site.xml.template > /usr/local/hadoop/etc/hadoop/core-site.xml
 
 # setting spark defaults
-echo spark.yarn.jar hdfs:///spark/spark-assembly-1.6.0-hadoop2.7.1.jar > $SPARK_HOME/conf/spark-defaults.conf
+echo spark.yarn.jar hdfs:///spark/spark-assembly-1.6.0.2.4.0.0-169-hadoop2.7.1.2.4.0.0-169.jar > $SPARK_HOME/conf/spark-defaults.conf
 cp $SPARK_HOME/conf/metrics.properties.template $SPARK_HOME/conf/metrics.properties
 
 service sshd start
@@ -30,12 +30,14 @@ $HADOOP_PREFIX/sbin/start-yarn.sh
 CONTAINER_IP=$(getent hosts `hostname` | awk '{ print $1 }')
 
 # Point AWS services to self
-echo "$CONTAINER_IP kinesis.us-east-1.amazonaws.com" >> /etc/hosts
-echo "127.0.0.1 dynamodb.us-east-1.amazonaws.com" >> /etc/hosts
-echo "$CONTAINER_IP master" >> /etc/hosts
+#echo "$CONTAINER_IP kinesis.us-east-1.amazonaws.com" >> /etc/hosts
+#echo "127.0.0.1 dynamodb.us-east-1.amazonaws.com" >> /etc/hosts
+#echo "$CONTAINER_IP master" >> /etc/hosts
 
 # # Start nginx
-nginx &
+#nginx &
+
+
 
 hdfs dfsadmin -safemode leave
 
