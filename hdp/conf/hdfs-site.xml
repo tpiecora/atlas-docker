@@ -1,0 +1,45 @@
+<configuration>
+
+	<property>
+		<name>dfs.client.read.shortcircuit</name>
+		<value>true</value>
+	</property>
+
+	<!-- not sure why not default port?? -->
+	<property>
+		<name>dfs.datanode.ipc.address</name>
+		<value>0.0.0.0:8010</value>
+	</property>
+
+	<property>
+		<name>dfs.domain.socket.path</name>
+		<value>/var/lib/hadoop-hdfs/dn_socket</value>
+	</property>
+
+	<property>
+		<name>dfs.namenode.name.dir.restore</name>
+		<value>true</value>
+	</property>
+
+	<property>
+		<name>dfs.namenode.safemode.threshold-pct</name>
+		<value>0.0</value>
+	</property>
+
+	<property>
+		<name>dfs.namenode.safemode.extension</name>
+		<value>0</value>
+	</property>
+
+	<property>
+		<name>dfs.replication</name>
+		<value>1</value>
+	</property>
+
+	<property>
+		<name>dfs.support.append</name>
+		<value>true</value>
+		<final>true</final>
+	</property>
+
+</configuration>

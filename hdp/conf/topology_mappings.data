@@ -1,0 +1,7 @@
+[network_topology]
+ip-10-0-199-55.node.dc1.consul=/default-rack
+10.0.199.55=/default-rack
+ip-10-0-199-57.node.dc1.consul=/default-rack
+10.0.199.57=/default-rack
+ip-10-0-199-56.node.dc1.consul=/default-rack
+10.0.199.56=/default-rack
